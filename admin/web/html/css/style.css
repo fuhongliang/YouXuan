@@ -1,0 +1,22 @@
+body {
+    background-color: #f2f2f2;
+}
+
+.fl {
+    float: left;
+}
+
+.header {
+    height: 80px;
+    background: #fff;
+}
+
+.header-logo {
+    display: block;
+    height: 43px;
+    font-size: 20px;
+    overflow: hidden;
+    margin-top: 18px;
+    margin-left: 30px;
+    text-align: center;
+}

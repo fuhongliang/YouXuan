@@ -1,0 +1,5 @@
+# local phpunit config
+/phpunit.xml
+config/ind_db.php
+.env
+runtime/*

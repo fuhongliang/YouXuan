@@ -1,0 +1,105 @@
+<div class="main-header">
+    <ul class="nav">
+        <?php foreach ($menu_list as $item): ?>
+        <li class="nav-item">
+            <a href="<?= $urlManager->createUrl($item['route']) ?>" class="nav-link <?= activeMenu($item, $route) ?>"><span class="nav-icon iconfont <?= $item['icon'] ?>"></span>
+                <?= $item['name'] ?>
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+
+<div class="main-header">
+    <div class="fl">
+        <a href="/" class="header-logo"><img src="<?= Yii::$app->request->baseUrl ?>/statics/images/logo.png" width="auto" height="100%">            </a>
+    </div>
+    <div class="header-nav fl">
+        <ul class="header-nav-list clearfix">
+            <?php foreach ($menu_list as $item): ?>
+            <li class="fl">
+                <a class="nav-item <?= activeMenu($item, $route) ?>"
+                   href="<?= $urlManager->createUrl($item['route']) ?>">
+                    <span class="nav-icon iconfont <?= $item['icon'] ?>"></span>
+                    <span class="item"><?= $item['name'] ?></span>
+                </a>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="main-header">
+    <div class="fl">
+        <a href="/" class="header-logo"><img src="<?= Yii::$app->request->baseUrl ?>/statics/images/logo.png" width="auto" height="100%">            </a>
+    </div>
+
+    <div class="header-nav">
+        <ul class="header-nav-list clearfix">
+            <li class="fl icon_09">
+                <a href="/Shop/home" class="hd_item"><p>首页</p></a>
+            </li>
+            <li class="fl icon_01">
+                <a href="/Shop/list_homepage" class="hd_item"><p>店铺</p></a>
+            </li>
+        </ul>
+    </div>
+
+    <?php if (is_array($this->params['page_navs'])): ?>
+    <div class="btn-group">
+        <?php foreach ($this->params['page_navs'] as $page_nav): ?>
+        <a href="<?= $page_nav['url'] ?>"
+           class="btn btn-secondary <?= $page_nav['active'] ? 'active' : null ?>"><?= $page_nav['name'] ?></a>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+
+    <div class="float-right">
+
+        <div class="btn-group float-left message">
+            <a href="javascript:" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+               style="position: relative">
+                <span>消息提醒</span>
+                <div class="text-center ml-2 totalNum"
+                     hidden
+                     style="width: 18px;height: 18px;line-height: 18px;border-radius:999px;display: inline-block;background-color: #ff4544;color:#fff;">
+                    5
+                </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right message-list" hidden>
+            </div>
+        </div>
+
+        <div class="btn-group float-left">
+            <a href="javascript:" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                <?= $this->context->store->name ?>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <?php if (Yii::$app->user->isGuest == false): ?>
+                <p class="dropdown-item">管理员：<?= Yii::$app->user->identity->nickname ?></p>
+                <?php elseif (Yii::$app->admin->isGuest == false): ?>
+                <p class="dropdown-item">管理员:<?= Yii::$app->admin->identity->username ?></p>
+                <?php else: ?>
+                <p class="dropdown-item">操作员:<?= Yii::$app->mchRoleAdmin->identity->nickname ?></p>
+                <?php endif; ?>
+                <?php if (Yii::$app->user->isGuest == false): ?>
+                <a class="dropdown-item"
+                   href="<?= Yii::$app->urlManager->createUrl(['mch/passport/logout']) ?>">返回系统</a>
+                <?php elseif (Yii::$app->admin->isGuest == false): ?>
+                <a class="dropdown-item"
+                   href="<?= Yii::$app->urlManager->createUrl(['mch/passport/logout']) ?>">返回系统</a>
+                <?php else: ?>
+                <a class="dropdown-item"
+                   href="<?= Yii::$app->urlManager->createUrl(['mch/permission/passport/logout']) ?>">退出登录</a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+</div>
+    
